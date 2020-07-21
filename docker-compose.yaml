@@ -7,5 +7,5 @@ services:
         - 3306:3306
     environment:
         - MYSQL_ROOT_PASSWORD=root
-#    volumes:
-#        - ./docker-mysql-init/:/docker-entrypoint-initdb.d
+    volumes:
+        - ./docker-mysql-init/:/docker-entrypoint-initdb.d

@@ -9,9 +9,9 @@ createConnection({
 	password: "root",
 	database: "test",
 	entities: [
-		__dirname + "/entity/*.js"
+		`${__dirname}/entity/*.js`
 	],
-	synchronize: true,
 }).then(connection => {
 	// here you can start to work with your entities
+	return connection;
 }).catch(error => console.log(error));
