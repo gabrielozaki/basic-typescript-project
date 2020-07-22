@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey } from 'typeorm';
 
-export class CreateInitialTables1595300936974 implements MigrationInterface {
+export default class CreateInitialTables1595300936974 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
           new Table({
-              name: 'departament',
+              name: 'department',
               columns: [
                   {
                       name: 'id',
@@ -66,7 +66,7 @@ export class CreateInitialTables1595300936974 implements MigrationInterface {
                       default: 'now()',
                   },
                   {
-                      name: 'departament_id',
+                      name: 'department_id',
                       type: 'varchar'
                   }
               ],
@@ -74,18 +74,18 @@ export class CreateInitialTables1595300936974 implements MigrationInterface {
         );
 
         await queryRunner.createForeignKey('user', new TableForeignKey({
-            name: 'FK_user_departament_id',
-            columnNames: ['departament_id'],
+            name: 'FK_user_department_id',
+            columnNames: ['department_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'departament',
+            referencedTableName: 'department',
             onDelete: 'CASCADE'
         }))
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey("user", 'FK_user_departament_id');
+        await queryRunner.dropForeignKey("user", 'FK_user_department_id');
         await queryRunner.dropTable('user');
-        await queryRunner.dropTable('departament');
+        await queryRunner.dropTable('department');
     }
 
 }
