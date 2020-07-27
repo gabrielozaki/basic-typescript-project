@@ -1,23 +1,12 @@
 import 'reflect-metadata';
-import {createConnection} from "typeorm";
+import getConnection from './database/index'
 import DepartamentService from './service/DepartamentService';
 
 
 (async () => {
-	const connection = await createConnection({
-		type: "mysql",
-		host: "localhost",
-		port: 3306,
-		username: "root",
-		password: "root",
-		database: "test",
-		entities: [
-			`${__dirname}/entity/*.js`, `${__dirname}/entity/*.ts`
-		],
-	});
+	const connection = await getConnection();
 	try{
-		const department = new DepartamentService();
-		await department.generateDepartment();
+		await DepartamentService.generateDepartment(connection.manager);
 	}catch (e) {
 		console.error(e);
 	}
