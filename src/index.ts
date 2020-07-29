@@ -5,7 +5,7 @@ import DepartamentService from './service/DepartamentService';
 
 (async () => {
 	const connection = await getConnection();
-	const departamentService = new DepartamentService(connection.manager);
+	const departamentService = new DepartamentService();
 	try{
 		await departamentService.generateDepartment();
 	}catch (e) {
