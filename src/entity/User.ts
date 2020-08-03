@@ -22,9 +22,6 @@ export default class User {
 	@Column()
 	age: number;
 
-	@Column()
-	test: number;
-
 	@CreateDateColumn( { name: 'created_at'})
 	createdAt: Date;
 

@@ -13,10 +13,10 @@ This is a project to help beginners to start a new project using typescript
 
 ## About the tech choices
 ### git-cz
-Normalize commit tool, very useful to make sure all your contributors are following the same pattern of commit message  
+Normalize commit tool with emojis :heart_eyes:, very useful to make sure all your contributors are following the same pattern of commit message  
 
 ### Dotenv
-Based on the Twelve-factor methodology, we try to keep our config on the environment, it's used as a dev dependency because it's spectated that you use the environment variable of your cloud provider  
+Based on the Twelve-factor methodology, we try to keep our config on the environment, it's recommended that you use the environment variable of your cloud provider  
 
 ### Eslint + Prettier + Airbnb config
 Helps to have a nice code readability, with a large use standard like the airbnb

@@ -1,6 +1,7 @@
 import { getConnection, EntityManager, Transaction, TransactionRepository } from 'typeorm';
 import DepartmentRepository from '../repository/DepartamentRepository';
 import UserRepository from '../repository/UserRepository';
+import logger from '../logger';
 
 export default class DepartamentService {
 	public async generateDepartment(): Promise<boolean> {
@@ -21,10 +22,9 @@ export default class DepartamentService {
 
 		// Throw a error to see this transaction failing
 		// throw new Error('Impossible to create department');
-		console.log(gabriel);
-		console.log(ozaki);
-		const departmentUsers = await departament.users;
-		console.log(departmentUsers);
+		logger.debug(JSON.stringify(gabriel));
+		logger.debug(JSON.stringify(ozaki));
+
 		return true;
 	}
 }

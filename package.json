@@ -13,8 +13,11 @@
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "mysql": "^2.18.1",
-    "typeorm": "^0.2.25"
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/node": "^14.0.23",
@@ -29,7 +32,6 @@
     "git-cz": "^4.7.0",
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
-    "reflect-metadata": "^0.1.13",
     "testcontainers": "^2.20.0",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.52",
