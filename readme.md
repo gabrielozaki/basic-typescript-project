@@ -12,6 +12,9 @@ This is a project to help beginners to start a new project using typescript
 * Documentation to help beginners
 
 ## About the tech choices
+### git-cz
+Normalize commit tool, very useful to make sure all your contributors are following the same pattern of commit message  
+
 ### Dotenv
 Based on the Twelve-factor methodology, we try to keep our config on the environment, it's used as a dev dependency because it's spectated that you use the environment variable of your cloud provider  
 

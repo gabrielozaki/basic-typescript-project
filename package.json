@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --declaration",
+    "commit": "npx git-cz",
     "lint": "eslint ./src --ext .ts",
     "start": "ts-node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,6 +26,7 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-promise": "^4.2.1",
+    "git-cz": "^4.7.0",
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
     "reflect-metadata": "^0.1.13",
