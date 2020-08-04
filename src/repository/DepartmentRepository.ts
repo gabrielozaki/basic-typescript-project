@@ -2,12 +2,12 @@ import { EntityRepository, Repository } from 'typeorm';
 import Department from '../entity/Department';
 
 @EntityRepository(Department)
-export default class DepartamentRepository extends Repository<Department> {
+export default class DepartmentRepository extends Repository<Department> {
 	public async createDepartmentByName(name: string): Promise<Department> {
-		const departament = new Department();
-		departament.name = name;
+		const department = new Department();
+		department.name = name;
 
-		return this.save(departament);
+		return this.save(department);
 	}
 
 	public async findByName(name: string): Promise<Department[]> {

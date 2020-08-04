@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import getConnection from './database/index'
-import DepartamentService from './service/DepartamentService';
+import DepartmentService from './service/DepartmentService';
 import logger from './logger';
 
 
@@ -10,11 +10,11 @@ import logger from './logger';
 	logger.debug('Creating connection');
 	const connection = await getConnection();
 
-	logger.debug('Creating DepartamentService');
-	const departamentService = new DepartamentService();
+	logger.debug('Creating DepartmentService');
+	const departmentService = new DepartmentService(connection);
 	try{
-		logger.debug('generating Departament');
-		await departamentService.generateDepartment();
+		logger.debug('generating Department');
+		await departmentService.generateDepartment();
 	}catch (e) {
 		logger.error(e);
 	}
