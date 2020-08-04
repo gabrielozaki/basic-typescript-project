@@ -5,11 +5,31 @@ This is a project to help beginners to start a new project using typescript
 * Provide a basic project structure
 * A functional ORM integration
 * Use of Migrations to versioning the database
-* Unit tests
 * Integration Tests
 * Sonar/lint to help the code quality and legibility
 * Be easy to test locally
 * Documentation to help beginners
+
+## Project Structure
+### src
+* `config` contains the project configuration, it's used to dotenv to populate the environment variables, note: explict 
+declared variables overwrite any  .env variable;
+
+* `database` contains the migrations and the database creation logic, the `migrations-as-code-example` are ignored by default,
+if you want to use a code migration, you have to create in the `migrations` folder;
+
+* `entity` The entities are direct representations of your database tables, there is a need to ignore cyclical dependencies
+because of the tables relations;
+
+* `logger` contains the logger creation logic, there two  behaviours, when debug is on, the log adopt a console friendly format,
+when debug is off assumes the default output, is possible to define another format, like elastic search format;
+
+* `repository` contains the interaction with entities logic, will be used by the services to store and retrieve data in the databases; 
+
+* `service` contains the business logic
+
+### tests
+* `integration` Contain tests that uses multiples parts of the project, even the entire project
 
 ## About the tech choices
 ### git-cz
