@@ -63,7 +63,8 @@ describe('End to End Test',() => {
     expect(User2Result.length).toEqual(1);
   })
 
-  afterAll(() => {
-    container.stop();
+  afterAll(async () => {
+    con.end()
+    await container.stop();
   })
 });
