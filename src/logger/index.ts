@@ -6,7 +6,6 @@ let logFormat = format.simple();
 const loglevel = DEBUG === 'true' ? 'debug' : 'info';
 
 if (NODE_ENV === 'development' || NODE_ENV === 'test') {
-
   logFormat = format.combine(
     format.colorize(),
     format.timestamp({
