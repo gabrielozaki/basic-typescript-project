@@ -1,11 +1,11 @@
 import { createLogger, format, transports } from 'winston';
-import { DEBUG } from '../config';
+import { DEBUG, NODE_ENV } from '../config';
 
-let loglevel = 'info';
 let logFormat = format.simple();
 
-if (DEBUG === 'TRUE') {
-  loglevel = 'debug';
+const loglevel = DEBUG === 'true' ? 'debug' : 'info';
+
+if (NODE_ENV === 'development' || NODE_ENV === 'test') {
 
   logFormat = format.combine(
     format.colorize(),
