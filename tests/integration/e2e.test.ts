@@ -5,7 +5,7 @@ import util from 'util';
 
 import path from 'path';
 import { StartedTestContainer } from 'testcontainers/dist/test-container';
-import DepartmentService from '../../src/service/DepartmentService';
+import { DepartmentService } from '../../src/service/DepartmentService';
 
 async function createDatabaseContainer() {
   const databaseFiles = path.resolve('./docker-mysql-init/');

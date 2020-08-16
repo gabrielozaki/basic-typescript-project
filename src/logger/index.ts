@@ -15,7 +15,7 @@ if (NODE_ENV === 'development' || NODE_ENV === 'test') {
   );
 }
 
-export default createLogger({
+export const logger = createLogger({
   level: loglevel,
   format: logFormat,
   transports: [new transports.Console()],

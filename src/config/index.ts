@@ -1,8 +1,15 @@
-import { resolve } from 'path';
 import { config } from 'dotenv';
 
-config({ path: resolve(__dirname, '../../.env.example') });
+config();
 
-const { TYPEORM_HOST, TYPEORM_USERNAME, TYPEORM_PASSWORD, TYPEORM_DATABASE, TYPEORM_PORT, DEBUG, NODE_ENV } = process.env;
+const {
+  TYPEORM_HOST,
+  TYPEORM_USERNAME,
+  TYPEORM_PASSWORD,
+  TYPEORM_DATABASE,
+  TYPEORM_PORT,
+  DEBUG,
+  NODE_ENV,
+} = process.env;
 
 export { TYPEORM_HOST, TYPEORM_USERNAME, TYPEORM_PASSWORD, TYPEORM_DATABASE, TYPEORM_PORT, DEBUG, NODE_ENV };

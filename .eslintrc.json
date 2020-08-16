@@ -6,6 +6,11 @@
     "project": ["./tsconfig.json"]
   },
   "rules": {
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "semi": "off",
     "@typescript-eslint/semi": [
       "error"

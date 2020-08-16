@@ -1,12 +1,14 @@
+import { Inject, Injectable } from '@nestjs/common';
 import { Connection, Transaction, TransactionRepository } from 'typeorm';
 import DepartmentRepository from '../repository/DepartmentRepository';
 import UserRepository from '../repository/UserRepository';
-import logger from '../logger';
+import { logger } from '../logger';
 
-export default class DepartmentService {
+@Injectable()
+export class DepartmentService {
   private connection: Connection;
 
-  constructor(connection: Connection) {
+  constructor(@Inject('DATABASE_CONNECTION') connection: Connection) {
     this.connection = connection;
   }
 
