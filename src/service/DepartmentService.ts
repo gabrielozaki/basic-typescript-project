@@ -1,41 +1,36 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Connection, Transaction, TransactionRepository } from 'typeorm';
-import DepartmentRepository from '../repository/DepartmentRepository';
-import UserRepository from '../repository/UserRepository';
+import { PrismaClient } from '@prisma/client';
+
 import { logger } from '../logger';
 
 @Injectable()
 export class DepartmentService {
-  private connection: Connection;
+  private prismaClient: PrismaClient;
 
-  constructor(@Inject('DATABASE_CONNECTION') connection: Connection) {
-    this.connection = connection;
+  constructor(@Inject('DATABASE_CONNECTION') prismaClient: PrismaClient) {
+    this.prismaClient = prismaClient;
   }
 
   public async generateDepartment(): Promise<boolean> {
-    const userRepository = this.connection.getCustomRepository(UserRepository);
-    const departmentRepository = this.connection.getCustomRepository(DepartmentRepository);
+    await this.prismaClient.$transaction(async (tx) => {
+      const department = await tx.department.create({
+        data: { name: 'TI' },
+      });
 
-    await this.process(userRepository, departmentRepository);
+      const gabriel = await tx.user.create({
+        data: { name: 'Gabriel', age: 29, Departmentid: department.id },
+      });
 
-    return true;
-  }
+      const ozaki = await tx.user.create({
+        data: { name: 'Ozaki', age: 50, Departmentid: department.id },
+      });
 
-  @Transaction()
-  // eslint-disable-next-line class-methods-use-this
-  private async process(
-    @TransactionRepository() userRepository: UserRepository,
-    @TransactionRepository() departmentRepository: DepartmentRepository,
-  ): Promise<boolean> {
-    const department = await departmentRepository.createDepartmentByName('TI');
+      // Throw a error to see this transaction failing
+      // throw new Error('Impossible to create department');
 
-    const gabriel = await userRepository.createUser('Gabriel', 29, department);
-    const ozaki = await userRepository.createUser('Ozaki', 50, department);
-
-    // Throw a error to see this transaction failing
-    // throw new Error('Impossible to create department');
-    logger.debug(JSON.stringify(gabriel));
-    logger.debug(JSON.stringify(ozaki));
+      logger.debug(JSON.stringify(gabriel));
+      logger.debug(JSON.stringify(ozaki));
+    });
 
     return true;
   }

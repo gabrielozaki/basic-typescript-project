@@ -1,0 +1,29 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/.prisma/client"
+}
+
+
+model Department {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(200)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  users     User[]   @relation("DepartmentToUsers")
+
+}
+
+model User {
+  id           String     @id @default(uuid())
+  name         String     @db.VarChar(50)
+  age          Int
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  Departmentid String  @map("department_id")
+  Department Department @relation("DepartmentToUsers", fields: [Departmentid], references: [id])
+}
