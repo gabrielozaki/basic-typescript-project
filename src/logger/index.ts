@@ -1,11 +1,16 @@
+import type { Logger } from 'winston';
 import { createLogger, format, transports } from 'winston';
-import { DEBUG, NODE_ENV } from '../config';
+import { ConfigService } from '@nestjs/config';
+
+const configService = new ConfigService();
+
+const isDebug = configService.get<boolean>('DEBUG', false);
+const nodeEnv = configService.get<string>('NODE_ENV', 'production');
 
 let logFormat = format.simple();
+const loglevel = isDebug ? 'debug' : 'info';
 
-const loglevel = DEBUG === 'true' ? 'debug' : 'info';
-
-if (NODE_ENV === 'development' || NODE_ENV === 'test') {
+if (nodeEnv === 'development' || nodeEnv === 'test') {
   logFormat = format.combine(
     format.colorize(),
     format.timestamp({
@@ -15,7 +20,7 @@ if (NODE_ENV === 'development' || NODE_ENV === 'test') {
   );
 }
 
-export const logger = createLogger({
+export const logger: Logger = createLogger({
   level: loglevel,
   format: logFormat,
   transports: [new transports.Console()],

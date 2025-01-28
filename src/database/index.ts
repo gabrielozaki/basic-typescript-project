@@ -1,17 +1,16 @@
-import { createConnection } from 'typeorm';
-import { Connection } from 'typeorm/connection/Connection';
-import { TYPEORM_HOST, TYPEORM_USERNAME, TYPEORM_PASSWORD, TYPEORM_DATABASE, TYPEORM_PORT } from '../config';
+import { PrismaClient } from '@prisma/client';
+import { ConfigService } from '@nestjs/config';
 
-export const typeormProvider = {
+export const prismaClient = {
   provide: 'DATABASE_CONNECTION',
-  useFactory: async (): Promise<Connection> =>
-    createConnection({
-      type: 'mysql',
-      host: TYPEORM_HOST,
-      port: Number(TYPEORM_PORT),
-      username: TYPEORM_USERNAME,
-      password: TYPEORM_PASSWORD,
-      database: TYPEORM_DATABASE,
-      entities: [`${__dirname}/../../src/entity/*.js`, `${__dirname}/../../src/entity/*.ts`],
-    }),
+  useFactory: (configService: ConfigService): PrismaClient => {
+    return new PrismaClient({
+      datasources: {
+        db: {
+          url: configService.get<string>('DATABASE_URL'),
+        },
+      },
+    });
+  },
+  inject: [ConfigService],
 };

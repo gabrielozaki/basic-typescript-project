@@ -5,44 +5,32 @@
     "tsconfigRootDir": "./",
     "project": ["./tsconfig.json"]
   },
-  "rules": {
-    "import/prefer-default-export": "off",
-    "import/no-default-export": "error",
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "semi": "off",
-    "@typescript-eslint/semi": [
-      "error"
-    ],
-    "promise/always-return": "error",
-    "promise/no-return-wrap": "error",
-    "promise/param-names": "error",
-    "promise/catch-or-return": "error",
-    "promise/no-native": "off",
-    "promise/no-nesting": "warn",
-    "promise/no-promise-in-callback": "warn",
-    "promise/no-callback-in-promise": "warn",
-    "promise/avoid-new": "warn",
-    "promise/no-new-statics": "error",
-    "promise/no-return-in-finally": "warn",
-    "promise/valid-params": "warn"
-  },
+  "overrides": [
+    {
+      "files": ["src/controller/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/class-methods-use-this": "off"
+      }
+    }
+  ],
   "plugins": [
+    "import",
     "@typescript-eslint",
     "prettier",
     "promise",
     "eslint-comments",
+    "nestjs",
     "jest"
   ],
   "extends": [
-    "airbnb-typescript/base",
+    "@kesills/eslint-config-airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
     "plugin:eslint-comments/recommended",
     "plugin:jest/recommended",
+    "plugin:jest/style",
     "plugin:promise/recommended",
     "prettier",
     "plugin:prettier/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:nestjs/recommended"
   ]
 }
